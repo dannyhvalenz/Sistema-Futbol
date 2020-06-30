@@ -64,7 +64,7 @@ function consultarNoticia($idNoticia) {
 //========================================================
 function crearNoticia($autor, $fecha, $titulo, $cuerpo, $idTorneo) {
     global $mysqli;
-    $sql = "INSERT INTO NOTICIA (ID,AUTOR,FECHA, TITULO, CUERPO, ID_TORNEO) VALUES(NULL,$autor, $fecha, $titulo, $cuerpo, $idTorneo)";
+    $sql = "INSERT INTO NOTICIA (ID,AUTOR,FECHA, TITULO, CUERPO, ID_TORNEO) VALUES(NULL,'$autor', '$fecha', '$titulo', '$cuerpo', '$idTorneo')";
     $resultado = $mysqli->query($sql);
     echo ($resultado)? 'Se creó la noticia'."\n" : 'Error al crear la noticia'."\n";
 }

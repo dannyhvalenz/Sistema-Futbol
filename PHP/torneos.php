@@ -53,7 +53,7 @@ function consultarTorneo($idTorneo) {
 //========================================================
 function crearTorneo($nombre, $fechaIncial, $fechaFinal) {
     global $mysqli;
-    $sql = "INSERT INTO TORNEO (ID,NOMBRE,FECHA_INICIAL, FECHA_FINAL) VALUES(NULL,$nombre, $fechaIncial, $fechaFinal)";
+    $sql = "INSERT INTO TORNEO (ID,NOMBRE,FECHA_INICIAL, FECHA_FINAL) VALUES(NULL,'$nombre', '$fechaIncial', '$fechaFinal')";
     $resultado = $mysqli->query($sql);
     echo ($resultado)? 'Se creó el torneo'."\n" : 'Error al crear el torneo'."\n";
 }

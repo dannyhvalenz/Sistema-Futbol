@@ -8,7 +8,6 @@
 //========================================================
 
 $operacion = $_GET['operacion'];
-echo $_GET['jugador'];
 switch ($operacion) {
     case 0: //Agregar jugador
         echo "Agregar jugador";
@@ -68,7 +67,7 @@ function consultarJugador($idJugador) {
 //========================================================
 function crearJugador($nombre, $apellido, $nickname, $fnacimiento, $posicion, $idEquipo) {
     global $mysqli;
-    $sql = "INSERT INTO JUGADOR (ID,NOMBRE,APELLIDO, NICKNAME, FECHA_NACIMIENTO, POSICION, ID_EQUIPO) VALUES(NULL,$nombre, $apellido, $nickname, $fnacimiento, $posicion, $idEquipo)";
+    $sql = "INSERT INTO JUGADOR (ID,NOMBRE,APELLIDO, NICKNAME, FECHA_NACIMIENTO, POSICION, ID_EQUIPO) VALUES(NULL,'$nombre', '$apellido', '$nickname', '$fnacimiento', '$posicion', $idEquipo)";
     $resultado = $mysqli->query($sql);
     echo ($resultado)? 'Se creó el jugador'."\n" : 'Error al crear el jugador'."\n";
 }

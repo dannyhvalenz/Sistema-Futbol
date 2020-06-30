@@ -8,7 +8,6 @@
 //========================================================
 
 $operacion = $_GET['operacion'];
-echo $_GET['equipo'];
 switch ($operacion) {
     case 0: //Agregar partido
         echo "Agregar equipo";
@@ -57,7 +56,7 @@ function consultarEquipo($Equipo) {
 //========================================================
 function crearEquipo($nombre, $entrenador) {
     global $mysqli;
-    $sql = "INSERT INTO EQUIPO (ID,NOMBRE,ENTRENADOR) VALUES(NULL,$nombre,$entrenador)";
+    $sql = "INSERT INTO EQUIPO (ID,NOMBRE,ENTRENADOR) VALUES(NULL,'$nombre','$entrenador')";
     $resultado = $mysqli->query($sql);
     echo ($resultado)? 'Se creó el equipo'."\n" : 'Error al crear equipo'."\n";
 }

@@ -53,7 +53,7 @@ function consultarPartido($partido) {
     $sql = "SELECT * FROM PARTIDO WHERE ID = '".$partido."'";
     echo ($mysqli->query($sql))? 'Datos del partido'."\n" : 'Error al consultar el partido'."\n";
 
-    $sql = "SELECT * FROM PARTIDO WHERE ID = '".$partido."'";
+    $sql = "SELECT * FROM PARTICIPA WHERE ID = '".$partido."'";
     echo ($mysqli->query($sql))? 'Datos del partido'."\n" : 'Error al consultar el partido'."\n";
 }
 
@@ -62,16 +62,16 @@ function consultarPartido($partido) {
 //========================================================
 function crearPartido($idEquipoLocal, $idEquipoVisitante,$golesLocal, $golesVisitante, $puntosLocal, $puntosVisitante) {
     global $mysqli;
-    $sql = "INSERT INTO PARTIDO (ID,GOLES_LOCAL,GOLES_VISITANTE) VALUES(NULL,$golesLocal,$golesVisitante)";
+    $sql = "INSERT INTO PARTIDO (ID,GOLES_LOCAL,GOLES_VISITANTE) VALUES(NULL,'$golesLocal','$golesVisitante')";
     $resultado = $mysqli->query($sql);
     // recuperar ultimo partido insertado
     $last_id = $mysqli->insert_id;
     echo ($resultado)? 'Creo partido'."\n" : 'Error en crear partido'."\n";
 
-    $sql = "INSERT INTO PARTICIPA VALUES($last_id,$idEquipoLocal,1,FALSE,$idEquipoVisitante,$puntosLocal)";
+    $sql = "INSERT INTO PARTICIPA VALUES('$last_id','$idEquipoLocal',1,FALSE,'$idEquipoVisitante','$puntosLocal')";
     echo ($mysqli->query($sql))? 'Se añadió puntos a equipo local'."\n" : 'Error al añadir puntos a equipo local'."\n";
 
-    $sql = "INSERT INTO PARTICIPA VALUES($last_id,$idEquipoVisitante,1,TRUE,$idEquipoLocal,$puntosVisitante)";
+    $sql = "INSERT INTO PARTICIPA VALUES('$last_id','$idEquipoVisitante',1,TRUE,'$idEquipoLocal','$puntosVisitante')";
     echo ($mysqli->query($sql))? 'Se añadió puntos a equipo visitante'."\n" : 'Error al añadir puntos a equipo visitante'."\n";
 }
 
