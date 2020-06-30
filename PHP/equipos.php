@@ -37,7 +37,7 @@ switch ($operacion) {
 // ****************** Consultar equipo ***********************+
 //===========================================================
 function consultarEquipo($Equipo) {
-    
+    global $mysqli;
     $sql = "SELECT * FROM EQUIPO WHERE ID = '".$Equipo."'";
     $resultado = $mysqli->query($sql);
     if(mysqli_num_rows($resultado) > 0){
@@ -56,6 +56,7 @@ function consultarEquipo($Equipo) {
 // ****************** Crear equipo ***********************+
 //========================================================
 function crearEquipo($nombre, $entrenador) {
+    global $mysqli;
     $sql = "INSERT INTO EQUIPO (ID,NOMBRE,ENTRENADOR) VALUES(NULL,$nombre,$entrenador)";
     $resultado = $mysqli->query($sql);
     echo ($resultado)? 'Se creó el equipo'."\n" : 'Error al crear equipo'."\n";
@@ -66,6 +67,7 @@ function crearEquipo($nombre, $entrenador) {
 // ****************** Actualizar equipo ***********************+
 //===========================================================
 function actualizarEquipo($idEquipo, $nombre,$entrenador){
+    global $mysqli;
     $sql = "UPDATE EQUIPO SET NOMBRE='$nombre', ENTRENADOR='$entrenador' WHERE ID = '$idEquipo'";
     echo ($mysqli->query($sql))? 'Se actualizó el equipo'."\n" : 'Error en actualizar el equipo'."\n";
 }
@@ -74,6 +76,7 @@ function actualizarEquipo($idEquipo, $nombre,$entrenador){
 // ****************** Eliminar equipo ***********************+
 //===========================================================
 function eliminarEquipo($Equipo) {
+    global $mysqli;
     $sql = "DELETE FROM EQUIPO WHERE ID = '".$Equipo."'";
     echo ($mysqli->query($sql))? 'Se eliminó el equipo'."\n" : 'Error al eliminar el equipo'."\n";
 }

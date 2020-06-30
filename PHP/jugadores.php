@@ -44,7 +44,7 @@ switch ($operacion) {
 // ****************** Consultar jugador ***********************+
 //===========================================================
 function consultarJugador($idJugador) {
-    
+    global $mysqli;
     $sql = "SELECT * FROM JUGADOR WHERE ID = '".$idJugador."'";
     $resultado = $mysqli->query($sql);
     if(mysqli_num_rows($resultado) > 0){
@@ -67,6 +67,7 @@ function consultarJugador($idJugador) {
 // ****************** Crear jugador ***********************+
 //========================================================
 function crearJugador($nombre, $apellido, $nickname, $fnacimiento, $posicion, $idEquipo) {
+    global $mysqli;
     $sql = "INSERT INTO JUGADOR (ID,NOMBRE,APELLIDO, NICKNAME, FECHA_NACIMIENTO, POSICION, ID_EQUIPO) VALUES(NULL,$nombre, $apellido, $nickname, $fnacimiento, $posicion, $idEquipo)";
     $resultado = $mysqli->query($sql);
     echo ($resultado)? 'Se creó el jugador'."\n" : 'Error al crear el jugador'."\n";
@@ -77,6 +78,7 @@ function crearJugador($nombre, $apellido, $nickname, $fnacimiento, $posicion, $i
 // ****************** Actualizar jugador ***********************+
 //===========================================================
 function  actualizarJugador($idJugador, $nombre, $apellido, $nickname, $fnacimiento, $posicion, $idEquipo) {
+    global $mysqli;
     $sql = "UPDATE JUGADOR SET NOMBRE='$nombre',APELLIDO='$apellido',NICKNAME='$nickname',FECHA_NACIMIENTO='$fnacimiento', POSICION='$posicion', ID_EQUIPO='$idEquipo' WHERE ID = '$idJugador'";
     echo ($mysqli->query($sql))? 'Se actualizó el jugador'."\n" : 'Error al actualizar al jugador'."\n";
 }
@@ -85,6 +87,7 @@ function  actualizarJugador($idJugador, $nombre, $apellido, $nickname, $fnacimie
 // ****************** Eliminar jugador ***********************+
 //===========================================================
 function eliminarJugador($idJugador) {
+    global $mysqli;
     $sql = "DELETE FROM JUGADOR WHERE ID = '".$idJugador."'";
     echo ($mysqli->query($sql))? 'Se eliminó el jugador'."\n" : 'Error al eliminar al jugador'."\n";
 }

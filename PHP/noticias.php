@@ -41,7 +41,7 @@ switch ($operacion) {
 // ****************** Consultar noticia ***********************+
 //===========================================================
 function consultarNoticia($idNoticia) {
-    
+    global $mysqli;
     $sql = "SELECT * FROM NOTICIA WHERE ID = '".$idNoticia."'";
     $resultado = $mysqli->query($sql);
     if(mysqli_num_rows($resultado) > 0){
@@ -63,6 +63,7 @@ function consultarNoticia($idNoticia) {
 // ****************** Crear noticia ***********************+
 //========================================================
 function crearNoticia($autor, $fecha, $titulo, $cuerpo, $idTorneo) {
+    global $mysqli;
     $sql = "INSERT INTO NOTICIA (ID,AUTOR,FECHA, TITULO, CUERPO, ID_TORNEO) VALUES(NULL,$autor, $fecha, $titulo, $cuerpo, $idTorneo)";
     $resultado = $mysqli->query($sql);
     echo ($resultado)? 'Se creó la noticia'."\n" : 'Error al crear la noticia'."\n";
@@ -73,6 +74,7 @@ function crearNoticia($autor, $fecha, $titulo, $cuerpo, $idTorneo) {
 // ****************** Actualizar noticia ***********************+
 //===========================================================
 function  actualizarNoticia($idNoticia, $autor, $fecha, $titulo, $cuerpo, $idTorneo) {
+    global $mysqli;
     $sql = "UPDATE JUGADOR SET AUTOR='$autor', FECHA='$fecha',TITULO='$titulo',CUERPO='$cuerpo', ID_TORNEO='$idTorneo' WHERE ID = '$idNoticia'";
     echo ($mysqli->query($sql))? 'Se actualizó la noticia'."\n" : 'Error al actualizar la noticia'."\n";
 }
@@ -81,6 +83,7 @@ function  actualizarNoticia($idNoticia, $autor, $fecha, $titulo, $cuerpo, $idTor
 // ****************** Eliminar noticia ***********************+
 //===========================================================
 function eliminarNoticia($idNoticia) {
+    global $mysqli;
     $sql = "DELETE FROM NOTICIA WHERE ID = '".$idNoticia."'";
     echo ($mysqli->query($sql))? 'Se eliminó la noticia'."\n" : 'Error al eliminar la noticia'."\n";
 }

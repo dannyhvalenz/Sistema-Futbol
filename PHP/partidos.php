@@ -49,7 +49,7 @@ switch ($operacion) {
 // ****************** Consultar partido con asignación de puntos ***********************+
 //===========================================================
 function consultarPartido($partido) {
-    
+    global $mysqli;
     $sql = "SELECT * FROM PARTIDO WHERE ID = '".$partido."'";
     echo ($mysqli->query($sql))? 'Datos del partido'."\n" : 'Error al consultar el partido'."\n";
 
@@ -61,6 +61,7 @@ function consultarPartido($partido) {
 // ****************** Crear partido con asignación de puntos ***********************+
 //========================================================
 function crearPartido($idEquipoLocal, $idEquipoVisitante,$golesLocal, $golesVisitante, $puntosLocal, $puntosVisitante) {
+    global $mysqli;
     $sql = "INSERT INTO PARTIDO (ID,GOLES_LOCAL,GOLES_VISITANTE) VALUES(NULL,$golesLocal,$golesVisitante)";
     $resultado = $mysqli->query($sql);
     // recuperar ultimo partido insertado
@@ -79,6 +80,7 @@ function crearPartido($idEquipoLocal, $idEquipoVisitante,$golesLocal, $golesVisi
 // ****************** Actualizar partido con asignación de puntos ***********************+
 //===========================================================
 function actualizarPartido($idEquipoLocal, $idEquipoVisitante,$golesLocal, $golesVisitante, $puntosLocal, $puntosVisitante, $partido){
+    global $mysqli;
     $sql = "UPDATE PARTIDO SET GOLES_LOCAL='$golesLocal', GOLES_VISITANTE='$golesVisitante' WHERE ID = '$partido'";
     echo ($mysqli->query($sql))? 'Se actualizó el partido'."\n" : 'Error al actualizar el partido'."\n";
 
@@ -105,6 +107,7 @@ function actualizarPartido($idEquipoLocal, $idEquipoVisitante,$golesLocal, $gole
 // ****************** Eliminar partido con asignación de puntos ***********************+
 //===========================================================
 function eliminarPartido($partido) {
+    global $mysqli;
     $sql = "DELETE FROM PARTICIPA WHERE ID_PARTIDO = '".$partido."'";
     echo ($mysqli->query($sql))? 'Se eliminaron los puntos el partido'."\n" : 'Error al eliminar el los puntos del partido'."\n";
 
